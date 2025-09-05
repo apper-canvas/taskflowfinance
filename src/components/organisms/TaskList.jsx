@@ -17,7 +17,7 @@ const TaskList = ({
   const [dragOverIndex, setDragOverIndex] = useState(null);
   const dragRef = useRef(null);
 
-  const handleDragStart = (e, task, index) => {
+const handleDragStart = (e, task, index) => {
     setDraggedTask({ task, index });
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer.setData("text/html", e.target.outerHTML);
@@ -37,9 +37,9 @@ const TaskList = ({
       newTasks.splice(dropIndex, 0, removed);
       
       // Update positions
-      const reorderedTasks = newTasks.map((task, index) => ({
+const reorderedTasks = newTasks.map((task, index) => ({
         ...task,
-        position: index
+        position_c: index
       }));
       
       onReorderTasks?.(reorderedTasks);
@@ -62,8 +62,8 @@ const TaskList = ({
     <div className={cn("space-y-3", className)}>
       <AnimatePresence>
         {tasks.map((task, index) => (
-          <motion.div
-            key={task.id}
+<motion.div
+            key={task.Id}
             draggable
             onDragStart={(e) => handleDragStart(e, task, index)}
             onDragOver={(e) => handleDragOver(e, index)}

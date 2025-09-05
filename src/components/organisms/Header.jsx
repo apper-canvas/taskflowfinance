@@ -1,8 +1,9 @@
-import { useState } from "react";
-import Button from "@/components/atoms/Button";
-import SearchBar from "@/components/molecules/SearchBar";
-import ApperIcon from "@/components/ApperIcon";
+import React, { useContext, useState } from "react";
 import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import SearchBar from "@/components/molecules/SearchBar";
+import Button from "@/components/atoms/Button";
+import { AuthContext } from "@/contexts/AuthContext";
 
 const Header = ({ 
   onSearch, 
@@ -10,6 +11,16 @@ const Header = ({
   onToggleMobileSidebar,
   className 
 }) => {
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <header className={cn(
       "bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-4",
@@ -47,14 +58,25 @@ const Header = ({
           />
         </div>
 
-        {/* Quick add button */}
-        <Button
-          onClick={onQuickAdd}
-          className="flex items-center space-x-2"
-        >
-          <ApperIcon name="Plus" className="h-4 w-4" />
-          <span className="hidden sm:inline">Add Task</span>
-        </Button>
+        {/* Action buttons */}
+        <div className="flex items-center space-x-2">
+          <Button
+            onClick={onQuickAdd}
+            className="flex items-center space-x-2"
+          >
+            <ApperIcon name="Plus" className="h-4 w-4" />
+            <span className="hidden sm:inline">Add Task</span>
+          </Button>
+          
+          <Button
+            variant="ghost"
+            onClick={handleLogout}
+            className="flex items-center space-x-2"
+          >
+            <ApperIcon name="LogOut" className="h-4 w-4" />
+            <span className="hidden sm:inline">Logout</span>
+          </Button>
+        </div>
       </div>
 
       {/* Mobile search bar */}

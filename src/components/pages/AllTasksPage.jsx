@@ -51,19 +51,19 @@ const AllTasksPage = () => {
   };
 
   // Apply filters
-  const filteredTasks = tasks.filter(task => {
+const filteredTasks = tasks.filter(task => {
     // Status filter
-    if (filters.status === "active" && task.completed) return false;
-    if (filters.status === "completed" && !task.completed) return false;
+    if (filters.status === "active" && task.completed_c) return false;
+    if (filters.status === "completed" && !task.completed_c) return false;
 
     // Priority filter
-    if (filters.priority !== "all" && task.priority !== filters.priority) return false;
+    if (filters.priority !== "all" && task.priority_c !== filters.priority) return false;
 
     // Due date filter
     if (filters.dueDate !== "all") {
-      if (filters.dueDate === "overdue" && !isOverdue(task.dueDate)) return false;
-      if (filters.dueDate === "today" && !isDueToday(task.dueDate)) return false;
-      if (filters.dueDate === "upcoming" && !isDueSoon(task.dueDate)) return false;
+      if (filters.dueDate === "overdue" && !isOverdue(task.due_date_c)) return false;
+      if (filters.dueDate === "today" && !isDueToday(task.due_date_c)) return false;
+      if (filters.dueDate === "upcoming" && !isDueSoon(task.due_date_c)) return false;
     }
 
     return true;
@@ -74,10 +74,10 @@ const AllTasksPage = () => {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+<div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">All Tasks</h1>
         <p className="text-gray-600">
-          {tasks.length} tasks total, {tasks.filter(t => !t.completed).length} active
+          {tasks.length} tasks total, {tasks.filter(t => !t.completed_c).length} active
         </p>
       </div>
 

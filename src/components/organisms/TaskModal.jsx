@@ -14,7 +14,7 @@ const TaskModal = ({
   lists = [],
   className 
 }) => {
-  const [formData, setFormData] = useState({
+const [formData, setFormData] = useState({
     title: "",
     description: "",
     listId: "",
@@ -24,14 +24,14 @@ const TaskModal = ({
 
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
+useEffect(() => {
     if (task) {
       setFormData({
-        title: task.title || "",
-        description: task.description || "",
-        listId: task.listId || "",
-        priority: task.priority || "medium",
-        dueDate: task.dueDate ? task.dueDate.split("T")[0] : "",
+        title: task.title_c || "",
+        description: task.description_c || "",
+        listId: task.list_id_c || "",
+        priority: task.priority_c || "medium",
+        dueDate: task.due_date_c ? task.due_date_c.split("T")[0] : "",
       });
     } else {
       setFormData({
@@ -72,8 +72,12 @@ const TaskModal = ({
     
     if (!validateForm()) return;
 
-    const taskData = {
-      ...formData,
+const taskData = {
+      title_c: formData.title,
+      description_c: formData.description,
+      list_id_c: formData.listId,
+      priority_c: formData.priority,
+      due_date_c: formData.dueDate ? new Date(formData.dueDate).toISOString() : null,
       dueDate: formData.dueDate ? new Date(formData.dueDate).toISOString() : null,
     };
 
@@ -142,7 +146,7 @@ const TaskModal = ({
                   List <span className="text-red-500">*</span>
                 </label>
                 <select
-                  value={formData.listId}
+value={formData.listId}
                   onChange={(e) => handleChange("listId", e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                 >
@@ -185,7 +189,7 @@ const TaskModal = ({
                 Cancel
               </Button>
               <Button type="submit">
-                {task ? "Update Task" : "Add Task"}
+{task ? "Update Task" : "Add Task"}
               </Button>
             </div>
           </form>

@@ -22,15 +22,15 @@ const TodayPage = () => {
 
   const handleSaveTask = async (taskData) => {
     try {
-      if (editingTask) {
-        await updateTask(editingTask.id, taskData);
+if (editingTask) {
+        await updateTask(editingTask.Id, taskData);
       } else {
         // Set due date to today for new tasks
         const today = new Date();
         today.setHours(23, 59, 59, 999);
         await createTask({
           ...taskData,
-          dueDate: today.toISOString()
+          due_date_c: today.toISOString()
         });
       }
       setEditingTask(null);
@@ -50,8 +50,8 @@ const TodayPage = () => {
     setEditingTask(null);
   };
 
-  const completedTasks = tasks.filter(t => t.completed);
-  const activeTasks = tasks.filter(t => !t.completed);
+const completedTasks = tasks.filter(t => t.completed_c);
+  const activeTasks = tasks.filter(t => !t.completed_c);
   const completionRate = tasks.length > 0 ? Math.round((completedTasks.length / tasks.length) * 100) : 0;
 
   if (loading) return <Loading />;

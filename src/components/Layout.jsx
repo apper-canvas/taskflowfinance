@@ -40,7 +40,7 @@ const Layout = () => {
   return (
     <div className="h-screen bg-gray-50 flex">
       {/* Desktop Sidebar */}
-      <Sidebar
+<Sidebar
         lists={lists}
         onAddList={createList}
       />

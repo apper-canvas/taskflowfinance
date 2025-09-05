@@ -5,7 +5,7 @@ import { cn } from "@/utils/cn";
 const TaskDate = ({ date, className }) => {
   if (!date) return null;
 
-  const overdue = isOverdue(date);
+const overdue = isOverdue(date);
   const today = isDueToday(date);
   const soon = isDueSoon(date);
 

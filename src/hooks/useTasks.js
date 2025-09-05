@@ -52,10 +52,10 @@ export const useTasks = (listId = null, view = "all") => {
     }
   };
 
-  const updateTask = async (id, data) => {
+const updateTask = async (id, data) => {
     try {
       const updatedTask = await taskService.update(id, data);
-      setTasks(prev => prev.map(t => t.id === id ? updatedTask : t));
+      setTasks(prev => prev.map(t => t.Id === id ? updatedTask : t));
       toast.success("Task updated successfully!");
       return updatedTask;
     } catch (err) {
@@ -64,12 +64,12 @@ export const useTasks = (listId = null, view = "all") => {
     }
   };
 
-  const toggleTaskComplete = async (id) => {
+const toggleTaskComplete = async (id) => {
     try {
       const updatedTask = await taskService.toggleComplete(id);
-      setTasks(prev => prev.map(t => t.id === id ? updatedTask : t));
+      setTasks(prev => prev.map(t => t.Id === id ? updatedTask : t));
       
-      if (updatedTask.completed) {
+      if (updatedTask.completed_c) {
         toast.success("Task completed! 🎉");
       } else {
         toast.success("Task marked as incomplete");
@@ -82,15 +82,15 @@ export const useTasks = (listId = null, view = "all") => {
     }
   };
 
-  const deleteTask = async (id) => {
+const deleteTask = async (id) => {
     try {
       const deletedTask = await taskService.delete(id);
-      setTasks(prev => prev.filter(t => t.id !== id));
+      setTasks(prev => prev.filter(t => t.Id !== id));
       
-      // Update list task count
-      if (deletedTask.listId) {
-        const currentTasks = await taskService.getByListId(deletedTask.listId);
-        await taskListService.updateTaskCount(deletedTask.listId, currentTasks.length);
+      // Update list task count if needed
+      if (deletedTask && deletedTask.list_id_c) {
+        const currentTasks = await taskService.getByListId(deletedTask.list_id_c);
+        await taskListService.updateTaskCount(deletedTask.list_id_c, currentTasks.length);
       }
       
       toast.success("Task deleted successfully");

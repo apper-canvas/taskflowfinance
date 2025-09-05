@@ -33,10 +33,10 @@ export const useTaskLists = () => {
     }
   };
 
-  const updateList = async (id, data) => {
+const updateList = async (id, data) => {
     try {
       const updatedList = await taskListService.update(id, data);
-      setLists(prev => prev.map(l => l.id === id ? updatedList : l));
+      setLists(prev => prev.map(l => l.Id === id ? updatedList : l));
       toast.success("List updated successfully!");
       return updatedList;
     } catch (err) {
@@ -45,11 +45,11 @@ export const useTaskLists = () => {
     }
   };
 
-  const deleteList = async (id) => {
+const deleteList = async (id) => {
     try {
       const deletedList = await taskListService.delete(id);
-      setLists(prev => prev.filter(l => l.id !== id));
-      toast.success(`List "${deletedList.name}" deleted`);
+      setLists(prev => prev.filter(l => l.Id !== id));
+      toast.success(`List "${deletedList.name_c || deletedList.Name}" deleted`);
       return deletedList;
     } catch (err) {
       toast.error("Failed to delete list");
@@ -57,8 +57,8 @@ export const useTaskLists = () => {
     }
   };
 
-  const getListById = (id) => {
-    return lists.find(l => l.id === id) || null;
+const getListById = (id) => {
+    return lists.find(l => l.Id === id) || null;
   };
 
   useEffect(() => {

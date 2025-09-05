@@ -20,7 +20,7 @@ const TaskCard = ({
 
   const handleToggleComplete = (e) => {
     e.stopPropagation();
-    onToggleComplete?.(task.id);
+onToggleComplete?.(task.Id);
   };
 
   const handleEdit = (e) => {
@@ -31,7 +31,7 @@ const TaskCard = ({
 
   const handleDelete = (e) => {
     e.stopPropagation();
-    onDelete?.(task.id);
+onDelete?.(task.Id);
     setShowMenu(false);
   };
 
@@ -44,16 +44,16 @@ const TaskCard = ({
       exit={{ opacity: 0, x: -100 }}
       whileHover={{ scale: 1.02 }}
       className={cn(
-        "group bg-white rounded-xl border border-gray-200 p-4 shadow-card hover:shadow-card-hover transition-all duration-200 cursor-pointer",
-        task.completed && "opacity-75 bg-gray-50",
+"group bg-white rounded-xl border border-gray-200 p-4 shadow-card hover:shadow-card-hover transition-all duration-200 cursor-pointer",
+        task.completed_c && "opacity-75 bg-gray-50",
         isDragging && "dragging shadow-lg",
         "relative"
       )}
       {...props}
     >
       <div className="flex items-start space-x-3">
-        <Checkbox
-          checked={task.completed}
+<Checkbox
+          checked={task.completed_c}
           onChange={handleToggleComplete}
           className="mt-0.5 flex-shrink-0"
         />
@@ -62,16 +62,16 @@ const TaskCard = ({
           <div className="flex items-center justify-between mb-2">
             <h3 
               className={cn(
-                "font-medium text-gray-900 text-sm leading-5",
-                task.completed && "line-through text-gray-500"
+"font-medium text-gray-900 text-sm leading-5",
+                task.completed_c && "line-through text-gray-500"
               )}
             >
-              {task.title}
+              {task.title_c}
             </h3>
             
             <div className="flex items-center space-x-2">
-              {task.priority && (
-                <TaskPriority priority={task.priority} />
+{task.priority_c && (
+                <TaskPriority priority={task.priority_c} />
               )}
               
               <div className="relative">
@@ -109,19 +109,19 @@ const TaskCard = ({
             </div>
           </div>
           
-          {task.description && (
+{task.description_c && (
             <p 
               className={cn(
                 "text-sm text-gray-600 mb-2 line-clamp-2",
-                task.completed && "line-through text-gray-400"
+                task.completed_c && "line-through text-gray-400"
               )}
             >
-              {task.description}
+              {task.description_c}
             </p>
           )}
           
-          {task.dueDate && (
-            <TaskDate date={task.dueDate} />
+{task.due_date_c && (
+            <TaskDate date={task.due_date_c} />
           )}
         </div>
       </div>

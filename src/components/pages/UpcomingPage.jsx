@@ -45,10 +45,10 @@ const UpcomingPage = () => {
   };
 
   // Group tasks by date
-  const groupedTasks = tasks.reduce((groups, task) => {
-    if (!task.dueDate) return groups;
+const groupedTasks = tasks.reduce((groups, task) => {
+    if (!task.due_date_c) return groups;
     
-    const date = format(parseISO(task.dueDate), "yyyy-MM-dd");
+    const date = format(parseISO(task.due_date_c), "yyyy-MM-dd");
     if (!groups[date]) {
       groups[date] = [];
     }

@@ -16,7 +16,7 @@ const ListPage = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [showTaskModal, setShowTaskModal] = useState(false);
 
-  const currentList = getListById(listId);
+const currentList = getListById(listId);
 
   const handleEditTask = (task) => {
     setEditingTask(task);
@@ -25,12 +25,12 @@ const ListPage = () => {
 
   const handleSaveTask = async (taskData) => {
     try {
-      if (editingTask) {
-        await updateTask(editingTask.id, taskData);
+if (editingTask) {
+        await updateTask(editingTask.Id, taskData);
       } else {
         await createTask({
           ...taskData,
-          listId: listId
+          list_id_c: listId
         });
       }
       setEditingTask(null);
@@ -61,20 +61,20 @@ const ListPage = () => {
     );
   }
 
-  const completedTasks = tasks.filter(t => t.completed);
-  const activeTasks = tasks.filter(t => !t.completed);
+const completedTasks = tasks.filter(t => t.completed_c);
+  const activeTasks = tasks.filter(t => !t.completed_c);
 
   return (
     <div className="p-6">
       <div className="mb-6">
         <div className="flex items-center space-x-3 mb-2">
           <div 
-            className="w-8 h-8 rounded-lg flex items-center justify-center"
-            style={{ backgroundColor: currentList.color }}
+className="w-8 h-8 rounded-lg flex items-center justify-center"
+            style={{ backgroundColor: currentList.color_c }}
           >
-            <ApperIcon name={currentList.icon} className="h-5 w-5 text-white" />
+            <ApperIcon name={currentList.icon_c} className="h-5 w-5 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">{currentList.name}</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{currentList.name_c || currentList.Name}</h1>
         </div>
         <p className="text-gray-600">
           {tasks.length} tasks total, {activeTasks.length} active
