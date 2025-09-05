@@ -95,8 +95,8 @@ const QuickAddModal = ({
                   onChange={(e) => handleChange("listId", e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                 >
-                  {lists.map((list) => (
-                    <option key={list.id} value={list.id}>
+{lists.map((list, index) => (
+                    <option key={list.id || `list-${index}`} value={list.id}>
                       {list.name}
                     </option>
                   ))}
