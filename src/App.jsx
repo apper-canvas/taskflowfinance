@@ -15,7 +15,7 @@ import AllTasksPage from "@/components/pages/AllTasksPage";
 import TodayPage from "@/components/pages/TodayPage";
 import ListPage from "@/components/pages/ListPage";
 import UpcomingPage from "@/components/pages/UpcomingPage";
-
+import StaffPage from "@/components/pages/StaffPage";
 // Create auth context
 export const AuthContext = createContext(null);
 
@@ -142,7 +142,8 @@ function App() {
             <Route index element={<AllTasksPage />} />
             <Route path="today" element={<TodayPage />} />
             <Route path="upcoming" element={<UpcomingPage />} />
-            <Route path="list/:listId" element={<ListPage />} />
+<Route path="list/:listId" element={<ListPage />} />
+            <Route path="staff" element={<StaffPage />} />
           </Route>
         </Routes>
         

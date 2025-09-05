@@ -27,7 +27,7 @@ const Sidebar = ({
     }
   };
 
-  const navItems = [
+const navItems = [
     { 
       path: "/", 
       label: "All Tasks", 
@@ -44,6 +44,12 @@ const Sidebar = ({
       path: "/upcoming", 
       label: "Upcoming", 
       icon: "Clock", 
+      count: 0 
+    },
+    { 
+      path: "/staff", 
+      label: "Staff", 
+      icon: "Users", 
       count: 0 
     },
   ];
